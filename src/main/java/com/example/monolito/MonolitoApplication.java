@@ -1,13 +1,13 @@
-package com.example.monolitico;
+package com.example.monolito;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MonoliticoApplication {
+public class MonolitoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MonoliticoApplication.class, args);
+		SpringApplication.run(MonolitoApplication.class, args);
 	}
 
 }

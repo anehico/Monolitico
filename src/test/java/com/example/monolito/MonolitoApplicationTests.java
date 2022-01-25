@@ -1,10 +1,10 @@
-package com.example.monolitico;
+package com.example.monolito;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MonoliticoApplicationTests {
+class MonolitoApplicationTests {
 
 	@Test
 	void contextLoads() {
