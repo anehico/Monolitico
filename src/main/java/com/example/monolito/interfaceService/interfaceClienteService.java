@@ -9,6 +9,7 @@ import java.util.Optional;
 public interface interfaceClienteService {
     public List<clienteModel> listar();
     public Optional<clienteModel> listarId(int id);
+    public Optional<clienteModel> listarDocumento(String documento);
     public clienteModel save(clienteModel cliente);
     public void delete(int id);
     public clienteModel update(clienteModel cliente,int id);

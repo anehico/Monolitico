@@ -6,7 +6,9 @@ import com.example.monolito.interfaces.InterfaceCliente;
 
 import com.example.monolito.model.clienteModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,11 +25,23 @@ public class ClienteService implements interfaceClienteService {
 
     @Override
     public Optional<clienteModel> listarId(int id) {
-        return Optional.empty();
+        return interfaceCliente.findById(id);
+    }
+
+    @Override
+    public Optional<clienteModel> listarDocumento(String documento){
+        return interfaceCliente.findByDocumento(documento);
     }
 
     @Override
     public clienteModel save(clienteModel cliente) {
+        try {
+            if(cliente.getEdad()<18){
+                throw new Exception("El cliente debe ser mayor de edad");
+            }
+        }catch (Exception exception){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
+        }
         return interfaceCliente.save(cliente);
     }
 

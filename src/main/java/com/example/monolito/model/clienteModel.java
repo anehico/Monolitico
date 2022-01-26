@@ -11,6 +11,7 @@ public class clienteModel {
     private int id;
     private String nombres;
     private int tipo_identificacion;
+    @Column(unique = true, nullable = false)
     private String codigo_identificacion;
     private int edad;
     private String ciudad_nacimiento;
