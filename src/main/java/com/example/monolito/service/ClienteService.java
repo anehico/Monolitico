@@ -35,13 +35,9 @@ public class ClienteService implements interfaceClienteService {
 
     @Override
     public clienteModel save(clienteModel cliente) {
-        try {
-            if(cliente.getEdad()<18){
-                throw new Exception("El cliente debe ser mayor de edad");
+            if(cliente.getEdad()<18) {
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "el cliente  debe ser mayor de edad");
             }
-        }catch (Exception exception){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, exception.getMessage());
-        }
         return interfaceCliente.save(cliente);
     }
 

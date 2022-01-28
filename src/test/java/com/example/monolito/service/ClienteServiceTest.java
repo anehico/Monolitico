@@ -33,7 +33,7 @@ class ClienteServiceTest {
         cliente.setCiudad_nacimiento("Tuluá");
         cliente.setCodigo_identificacion("1116252516");
         cliente.setTipo_identificacion(1);
-        cliente.setEdad(14);
+        cliente.setEdad(19);
     }
 
     @Test
@@ -45,7 +45,7 @@ class ClienteServiceTest {
     @Test
     void save() {
         when(interfaceCliente.save(any(clienteModel.class))).thenReturn(cliente);
-        assertNotNull(clienteService.save(new clienteModel()));
+        assertNotNull(clienteService.save(cliente));
     }
 
     @Test
