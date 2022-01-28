@@ -14,6 +14,9 @@ public class imagenModel {
 
     private Binary image;
 
+    public imagenModel(){
+
+    }
     public imagenModel(int id) {
         this.id = id;
     }
@@ -32,6 +35,13 @@ public class imagenModel {
 
     public void setImage(Binary image) {
         this.image = image;
+    }
+    @Override
+    public String toString() {
+        return "imagenModel{" +
+                "id=" + id +
+                ", image=" + image +
+                '}';
     }
 
 }

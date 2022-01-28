@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/cliente")
@@ -22,7 +23,7 @@ public class imagenController {
     }
 
     @GetMapping("/image/{id}")
-    public imagenModel getImage(@PathVariable int id){
+    public Optional<imagenModel> getImage(@PathVariable int id){
         return imagenRepository.getPhoto(id);
     }
 

@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.Arrays;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -59,4 +60,15 @@ class ClienteServiceTest {
         assertNull(clienteService.update(new clienteModel(), any(Integer.class)));
     }
 
+    @Test
+    void listarId() {
+        when(interfaceCliente.findById(cliente.getId())).thenReturn(Optional.of(cliente));
+        assertNotNull(clienteService.listarId(cliente.getId()));
+    }
+
+    @Test
+    void listarDocumento() {
+        when(interfaceCliente.findById(cliente.getId())).thenReturn(Optional.of(cliente));
+        assertNotNull(clienteService.listarId(cliente.getId()));
+    }
 }

@@ -12,6 +12,7 @@ import com.example.monolito.interfaces.InterfaceImagen;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Service
 public class imagenService implements InterfaceImagenService {
@@ -23,13 +24,13 @@ public class imagenService implements InterfaceImagenService {
         imagenModel imagen= new imagenModel(id);
         imagen.setImage(
                 new Binary(BsonBinarySubType.BINARY, file.getBytes()));
-        imagen = imagenRepo.insert(imagen);
+        imagenRepo.insert(imagen);
         return imagen;
     }
 
     @Override
-    public imagenModel getPhoto(int id) {
-        return imagenRepo.findById(id).get();
+    public Optional<imagenModel> getPhoto(int id) {
+        return (Optional<imagenModel>) imagenRepo.findById(id);
     }
 
     @Override
