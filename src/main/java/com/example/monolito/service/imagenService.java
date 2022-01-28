@@ -1,20 +1,24 @@
 package com.example.monolito.service;
 
+import com.example.monolito.interfaceService.InterfaceImagenService;
 import com.example.monolito.model.imagenModel;
 import org.bson.BsonBinarySubType;
 import org.bson.types.Binary;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import com.example.monolito.interfaces.InterfaceImagen;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 
 @Service
-public class imagenService {
+public class imagenService implements InterfaceImagenService {
     @Autowired
     private InterfaceImagen imagenRepo;
 
+    @Override
     public imagenModel addImagen(int id, MultipartFile file) throws IOException {
         imagenModel imagen= new imagenModel(id);
         imagen.setImage(
@@ -23,7 +27,29 @@ public class imagenService {
         return imagen;
     }
 
+    @Override
     public imagenModel getPhoto(int id) {
         return imagenRepo.findById(id).get();
+    }
+
+    @Override
+    public void deleteImage(int id){
+        imagenRepo.deleteById(id);
+    }
+
+    @Override
+    public imagenModel updateImage(int id, MultipartFile file) throws IOException {
+        return imagenRepo.findById(id)
+                .map(
+                        imagen->{
+                            try {
+                                imagen.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
+                            } catch (IOException e) {
+                                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+                            }
+                            return imagenRepo.save(imagen);
+                        }).orElseGet(() -> {
+            return null;
+        });
     }
 }

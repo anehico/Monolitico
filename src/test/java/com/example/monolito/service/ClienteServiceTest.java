@@ -50,10 +50,13 @@ class ClienteServiceTest {
 
     @Test
     void delete() {
+        assertNull(clienteService.delete(cliente.getId()));
     }
 
     @Test
     void update() {
+        when(clienteService.update(any(clienteModel.class), cliente.getId())).thenReturn(cliente);
+        assertNull(clienteService.update(new clienteModel(), any(Integer.class)));
     }
 
 }

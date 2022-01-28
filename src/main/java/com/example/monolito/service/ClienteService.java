@@ -46,8 +46,9 @@ public class ClienteService implements interfaceClienteService {
     }
 
     @Override
-    public void delete(int id) {
+    public Object delete(int id) {
         interfaceCliente.deleteById(id);
+        return null;
     }
 
     public clienteModel update(clienteModel newCliente, int id) {
