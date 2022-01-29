@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.swing.text.html.Option;
 import java.io.IOException;
 import java.util.Optional;
 
@@ -34,7 +35,7 @@ public class imagenController {
     }
 
     @PutMapping("/image/{id}")
-    public imagenModel updateImage(@PathVariable int id, @RequestParam("image") MultipartFile image) throws IOException{
+    public Optional<imagenModel> updateImage(@PathVariable int id, @RequestParam("image") MultipartFile image) throws IOException{
         return imagenRepository.updateImage(id, image);
     }
 }

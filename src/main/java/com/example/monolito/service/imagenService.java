@@ -34,15 +34,16 @@ public class imagenService implements InterfaceImagenService {
     }
 
     @Override
-    public void deleteImage(int id){
+    public Object deleteImage(int id){
         imagenRepo.deleteById(id);
+        return null;
     }
 
     @Override
-    public imagenModel updateImage(int id, MultipartFile file) throws IOException {
-        return imagenRepo.findById(id)
+    public Optional<imagenModel> updateImage(int id, MultipartFile file) throws IOException {
+        return Optional.ofNullable(imagenRepo.findById(id)
                 .map(
-                        imagen->{
+                        imagen -> {
                             try {
                                 imagen.setImage(new Binary(BsonBinarySubType.BINARY, file.getBytes()));
                             } catch (IOException e) {
@@ -50,7 +51,7 @@ public class imagenService implements InterfaceImagenService {
                             }
                             return imagenRepo.save(imagen);
                         }).orElseGet(() -> {
-            return null;
-        });
+                    return null;
+                }));
     }
 }

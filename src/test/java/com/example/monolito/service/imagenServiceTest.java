@@ -1,6 +1,7 @@
 package com.example.monolito.service;
 
 import com.example.monolito.interfaces.InterfaceImagen;
+import com.example.monolito.model.clienteModel;
 import com.example.monolito.model.imagenModel;
 import org.bson.types.Binary;
 import org.junit.jupiter.api.BeforeEach;
@@ -54,9 +55,11 @@ class imagenServiceTest {
 
     @Test
     void deleteImage() {
+        assertNull(imagenSer.deleteImage(imagen.getId()));
     }
 
     @Test
-    void updateImage() {
+    void updateImage() throws IOException {
+        when(imagenSer.updateImage(imagen.getId(), multipartFile)).thenReturn(Optional.of(imagen));
     }
 }
